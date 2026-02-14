@@ -49,25 +49,6 @@ The API endpoint is configured in `src/app/services/product.service.ts`:
 
 Make sure your backend API is running on this port before starting the frontend application.
 
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── components/
-│   │   ├── product-list/      # Product list with grid view
-│   │   └── product-form/       # Product create/edit modal form
-│   ├── models/
-│   │   └── product.model.ts    # TypeScript interfaces and models
-│   ├── services/
-│   │   └── product.service.ts  # API service for HTTP requests
-│   ├── app.component.*         # Root component
-│   ├── app.module.ts           # Main module
-│   └── app-routing.module.ts   # Routing configuration
-├── assets/                     # Static assets
-└── styles.css                  # Global styles
-
-```
 
 ## Technologies Used
 
