@@ -18,7 +18,7 @@
 ## Setup Instructions
 
 - Clone the repository:
-git clone https://github.com/MohamedRagab10793-design/NanoHelthTask.git
+https://github.com/MohamedRagab10793-design/LTask.git
 
 - Open the solution in Visual Studio 2022.
 - Ensure your SQL Server instance is running and accessible.
