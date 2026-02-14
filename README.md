@@ -1,6 +1,6 @@
-# BackendTask
+# Backend  && Frontend at the same repo
 
-## Requirements to Run the Project
+## Requirements to Run Backend Project
 
 1. **.NET 8 SDK**  
    - Ensure that .NET 8 is installed on your machine.  
@@ -15,6 +15,10 @@
    - You can use SQL Server Express or any compatible edition.  
    - Download from: [https://www.microsoft.com/en-us/sql-server/sql-server-downloads](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
+   ## Requirements to Run Frontend Project
+   -  after you clone this repo you will find the frontend code inside folder With Name frontend and inside it you will find README.md file
+
+
 ## Setup Instructions
 
 - Clone the repository:
@@ -26,7 +30,7 @@ https://github.com/MohamedRagab10793-design/LTask.git
 - Build and run the project.
 
 ## Notes
-
+- frontend code inside folder With Name frontend and inside it you will find README.md file
 - Make sure all dependencies are installed before building.
 - For any issues, check your .NET SDK and SQL Server installation.
 
