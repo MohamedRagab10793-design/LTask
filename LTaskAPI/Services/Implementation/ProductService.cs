@@ -39,7 +39,6 @@ public class ProductService : IProductService
             Items = items,
             TotalCount = totalCount,
             PageNumber = productsQueryDto.PageNumber,
-            PageSize = productsQueryDto.PageSize,
             TotalPages = (int)Math.Ceiling((double)totalCount / productsQueryDto.PageSize)
         };
 

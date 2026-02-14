@@ -9,10 +9,9 @@ namespace LTaskAPI.Controllers;
 public class ProductController(IProductService productService) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] GetAllProductsQueryDto productsQueryDto)
+    public async Task<ResultDto<PaginatedResponse<ProductDto>>> Get([FromQuery] GetAllProductsQueryDto productsQueryDto)
     {
-        var products = await productService.GetAsync(productsQueryDto);
-        return Ok(products);
+        return await productService.GetAsync(productsQueryDto);
     }
 
     [HttpGet("{id}")]

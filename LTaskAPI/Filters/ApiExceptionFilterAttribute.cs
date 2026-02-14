@@ -33,12 +33,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     private void HandleException(ExceptionContext context)
     {
         Type type = context.Exception.GetType();
-        if (_exceptionHandlers.ContainsKey(type))
-        {
-            _exceptionHandlers[type].Invoke(context);
-            return;
-        }
-
+       
         if (!context.ModelState.IsValid)
         {
             HandleInvalidModelStateException(context);
@@ -66,20 +61,6 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         };
 
         problemDetails.Extensions["correlationId"] = correlationId;
-        if (_environment.IsDevelopment())
-        {
-            problemDetails.Extensions["stackTrace"] = context.Exception.StackTrace;
-            problemDetails.Extensions["source"] = context.Exception.Source;
-            if (context.Exception.InnerException != null)
-            {
-                problemDetails.Extensions["innerException"] = new
-                {
-                    message = context.Exception.InnerException.Message,
-                    stackTrace = context.Exception.InnerException.StackTrace
-                };
-            }
-        }
-
         return problemDetails;
     }
 
@@ -109,8 +90,6 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             Detail = context.Exception?.InnerException?.Message + context.Exception?.Message,
             Instance = context.HttpContext.Request.Path
         };
-
-        // Add correlation ID
         details.Extensions["correlationId"] = context.HttpContext.TraceIdentifier;
 
         context.Result = new BadRequestObjectResult(details);
