@@ -2,14 +2,7 @@
 
 This is an Angular 16 application for managing products with full CRUD operations.
 
-## Features
 
-✨ **Modern UI Design** - Beautiful, gradient-based design with smooth animations
-📦 **Product Management** - Full CRUD operations (Create, Read, Update, Delete)
-📄 **Pagination** - Efficient data loading with pagination support
-🎨 **Responsive Design** - Works great on all screen sizes
-⚡ **Real-time Updates** - Instant UI updates after data operations
-🛡️ **Form Validation** - Client-side validation for data integrity
 
 ## Prerequisites
 
@@ -50,43 +43,6 @@ The API endpoint is configured in `src/app/services/product.service.ts`:
 Make sure your backend API is running on this port before starting the frontend application.
 
 
-## Technologies Used
 
-- **Angular 16** - Frontend framework
-- **TypeScript** - Programming language
-- **RxJS** - Reactive programming
-- **HttpClient** - HTTP communication
-- **Reactive Forms** - Form handling and validation
 
-## Features Breakdown
 
-### Product List
-- Grid-based card layout
-- Pagination controls
-- Edit and delete actions
-- Empty state for no products
-- Loading states
-- Error handling
-
-### Product Form
-- Modal-based form
-- Create and edit modes
-- Form validation
-- Real-time validation feedback
-- Smooth animations
-
-### Styling
-- Modern gradient designs
-- Custom animations
-- Hover effects
-- Responsive layout
-- Custom scrollbar
-- Premium color palette
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
-
-## License
-
-MIT License
