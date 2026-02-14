@@ -1,0 +1,63 @@
+<div class="modal-overlay" (click)="onCancel()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <h2 class="modal-title">
+                <span class="title-icon">{{ isEditMode ? '✏️' : '➕' }}</span>
+                {{ isEditMode ? 'Edit Product' : 'Add New Product' }}
+            </h2>
+            <button class="btn-close" (click)="onCancel()">×</button>
+        </div>
+
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="modal-body">
+                <!-- Error Message -->
+                <div class="error-message" *ngIf="error">
+                    <span class="error-icon">⚠️</span>
+                    {{ error }}
+                </div>
+
+                <!-- Name Field -->
+                <div class="form-group">
+                    <label for="name" class="form-label">
+                        Product Name
+                        <span class="required">*</span>
+                    </label>
+                    <input type="text" id="name" formControlName="name" class="form-input"
+                        [class.invalid]="name?.invalid && name?.touched" placeholder="Enter product name" />
+                    <div class="field-error" *ngIf="name?.invalid && name?.touched">
+                        <span *ngIf="name?.errors?.['required']">Product name is required</span>
+                        <span *ngIf="name?.errors?.['minlength']">Product name must be at least 2 characters</span>
+                    </div>
+                </div>
+
+                <!-- Price Field -->
+                <div class="form-group">
+                    <label for="price" class="form-label">
+                        Price
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">$</span>
+                        <input type="number" id="price" formControlName="price" class="form-input with-icon"
+                            [class.invalid]="price?.invalid && price?.touched" placeholder="0.00" step="0.01" min="0" />
+                    </div>
+                    <div class="field-error" *ngIf="price?.invalid && price?.touched">
+                        <span *ngIf="price?.errors?.['required']">Price is required</span>
+                        <span *ngIf="price?.errors?.['min']">Price must be greater than 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" (click)="onCancel()" [disabled]="loading">
+                    Cancel
+                </button>
+                <button type="submit" class="btn-primary" [disabled]="loading || productForm.invalid">
+                    <span class="spinner-small" *ngIf="loading"></span>
+                    <span *ngIf="!loading">{{ isEditMode ? 'Update Product' : 'Create Product' }}</span>
+                    <span *ngIf="loading">{{ isEditMode ? 'Updating...' : 'Creating...' }}</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

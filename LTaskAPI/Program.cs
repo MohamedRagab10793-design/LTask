@@ -24,6 +24,18 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add CORS policy for Angular frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddScoped<IProductService, ProductService>();
 var logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).Enrich.FromLogContext().CreateLogger();
 builder.Logging.ClearProviders();
@@ -46,6 +58,7 @@ app.MapHealthChecks("/health", new HealthCheckOptions()
 
 
 app.UseRouting();
+app.UseCors("AllowAngularApp");
 //app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

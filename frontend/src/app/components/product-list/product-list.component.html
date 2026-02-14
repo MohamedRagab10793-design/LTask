@@ -1,0 +1,89 @@
+<div class="product-list-container">
+    <div class="header">
+        <div class="header-content">
+            <h1 class="title">
+                <span class="icon">📦</span> Product Management
+            </h1>
+            <p class="subtitle">Manage your products</p>
+        </div>
+        <button class="btn-primary" (click)="onAddProduct()">
+      <span class="btn-icon">+</span>
+      Add New Product
+    </button>
+    </div>
+
+    <!-- Error Message -->
+    <div class="error-message" *ngIf="error">
+        <span class="error-icon">⚠️</span> {{ error }}
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-spinner" *ngIf="loading">
+        <div class="spinner"></div>
+        <p>Loading products...</p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" *ngIf="!loading && products.length > 0">
+        <div class="product-card" *ngFor="let product of products">
+            <div class="product-header">
+                <div class="product-id"># {{ product.id }}</div>
+                <div class="product-actions">
+                    <button class="btn-icon-action edit" (click)="onEditProduct(product)" title="Edit">
+            ✏️
+          </button>
+                    <button class="btn-icon-action delete" (click)="onDeleteProduct(product.id)" title="Delete">
+            🗑️
+          </button>
+                </div>
+            </div>
+
+            <div class="product-body">
+                <h3 class="product-name">{{ product.name }}</h3>
+                <div class="product-price">
+                    <span class="currency">$</span>
+                    <span class="amount">{{ product.price | number:'1.2-2' }}</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!loading && products.length === 0">
+        <div class="empty-icon">📭</div>
+        <h3>No products found</h3>
+        <p>Start by adding your first product</p>
+        <button class="btn-primary" (click)="onAddProduct()">
+      <span class="btn-icon">+</span>
+      Add Product
+    </button>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" *ngIf="!loading && totalPages > 1">
+        <button class="pagination-btn" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
+      ← Previous
+    </button>
+
+        <div class="page-numbers">
+            <button *ngFor="let page of pages" class="page-number" [class.active]="page === currentPage" (click)="onPageChange(page)">
+        {{ page }}
+      </button>
+        </div>
+
+        <button class="pagination-btn" [disabled]="currentPage === totalPages" (click)="onPageChange(currentPage + 1)">
+      Next →
+    </button>
+    </div>
+
+    <!-- Product Count Info -->
+    <div class="info-bar" *ngIf="!loading && products.length > 0">
+        <p>Showing {{ products.length }} of {{ totalCount }} products</p>
+    </div>
+</div>
+
+<!-- Product Form Modal -->
+<app-product-form *ngIf="showForm" [product]="selectedProduct" (close)="onFormClose()" (save)="onFormSave()">
+</app-product-form>
